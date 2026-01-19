@@ -1,0 +1,6 @@
+*.idea
+*.iml
+*.pyc
+.sqlite3
+venvDjango/
+.DS_Store

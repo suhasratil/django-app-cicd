@@ -1,0 +1,8 @@
+
+.github/
+.ado/
+.git
+.gitignore
+.sqlite3
+venvDjango/
+README.md
