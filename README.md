@@ -2,7 +2,7 @@
 
 ## Django, Python, CICD
 
-<!-- # Mojang Java Build Engineer Assignment 
+<!-- # Mojang Java Build Engineer Assignment
 
 ## Overview
 You are provided with a minimal Django project `piston` as the starting point for the assignment.
