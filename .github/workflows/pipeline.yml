@@ -10,9 +10,6 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
- # PROJECT_ID: sc-tnt-tools-telemetry-prod
- # REPOSITORY: docker
- # IMAGE_NAME: tnt-blog
 
 jobs:
   build-and-push-piston:
