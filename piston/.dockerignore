@@ -1,14 +1,34 @@
 
+# CICD
 .github/
 .ado/
+
+# Version Control
 .git
 .gitignore
+
+# Python/Django
 .sqlite3
 venvDjango/
 __pycache__/
 *.pyc
+
+# Documentation
 README.md
 solution.txt
+
+# Docker
 .dockerignore
-Dockerfile
+Dockerfile*
+
+# OS-specific files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs 
+*.log

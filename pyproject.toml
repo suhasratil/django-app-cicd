@@ -1,0 +1,10 @@
+[tool.ruff]
+line-length = 127
+target-version = "py311"
+
+[tool.ruff.lint]
+# E = Error, F = Pyflakes, I = Isort
+select = ["E", "F", "I"]
+# We ignore E501 specifically because we want the formatter 
+# to handle it, or we don't mind long comments.
+ignore = ["E501"]
