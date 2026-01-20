@@ -5,4 +5,10 @@
 .gitignore
 .sqlite3
 venvDjango/
+__pycache__/
+*.pyc
 README.md
+solution.txt
+.dockerignore
+Dockerfile
+.DS_Store

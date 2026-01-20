@@ -1,5 +1,6 @@
 *.idea
 *.iml
+__pycache__/
 *.pyc
 .sqlite3
 venvDjango/

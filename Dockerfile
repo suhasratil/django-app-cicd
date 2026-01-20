@@ -1,21 +1,30 @@
-FROM python:3.11.12
+FROM python:3.11-slim AS builder
 
-ENV dockerHOME=/home/app
-RUN mkdir -p $dockerHOME
-WORKDIR $dockerHOME
+ENV appHome=/home/app
+ENV buildHome=/home/build
+
+WORKDIR $buildHome
+
+RUN apt-get update && apt-get install -y gcc libpq-dev
+
+RUN pip install --upgrade pip
+COPY requirements.txt .
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+
+FROM python:3.11-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-RUN pip install --upgrade pip
-COPY requirements.txt $dockerHOME
-RUN pip install --no-cache-dir -r requirements.txt
+ENV PYTHONPATH=/install/lib/python3.11/site-packages
+ENV PATH=/install/bin:$PATH
 
-COPY . $dockerHOME
+COPY --from=builder /install /install
 
-WORKDIR $dockerHOME/piston
+COPY . .
 
-RUN pip install -r ../requirements.txt
+WORKDIR $appHome/piston
 
 EXPOSE 8000
 
