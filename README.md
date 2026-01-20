@@ -1,6 +1,8 @@
 [![Build and Push Piston docker image to GHCR](https://github.com/suhasratil/django-app-cicd/actions/workflows/pipeline.yml/badge.svg)](https://github.com/suhasratil/django-app-cicd/actions/workflows/pipeline.yml)
 
-<!-- # Mojang Java Build Engineer Assignment -->
+## Django, Python, CICD
+
+<!-- # Mojang Java Build Engineer Assignment 
 
 ## Overview
 You are provided with a minimal Django project `piston` as the starting point for the assignment.
@@ -68,3 +70,4 @@ Please add your reasoning and anything you want us to know to help understand yo
 Feel free to reach out to the recruiter if you have any questions for this assignment.
 
 Good luck!
+-->
