@@ -7,6 +7,7 @@ on:
 permissions:
       contents: read
       packages: write
+      security-events: write
 
 env:
   REGISTRY: ghcr.io
@@ -25,6 +26,14 @@ jobs:
 
       - name: Run Pre-commit
         uses: pre-commit/action@v3.0.1
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: python
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
 
       - name: Build and Test
         run: |
