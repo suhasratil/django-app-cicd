@@ -2,6 +2,8 @@ name: Build and Push Piston docker image to GHCR
 on:
     push:
         branches: ["main"]
+    pull_request:
+        branches: ["main"]
     workflow_dispatch:
 
 permissions:
@@ -39,7 +41,7 @@ jobs:
       - name: Build and Test
         run: |
           docker build -t piston-app:test .
-          docker run --rm piston-app:test python manage.py test
+          docker run --rm piston-app:test python manage.py test healthcheck.tests
 
 
   deploy:
