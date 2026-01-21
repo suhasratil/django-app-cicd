@@ -1,8 +1,7 @@
 from health_check.backends import BaseHealthCheckBackend
 from health_check.exceptions import HealthCheckException
-
 from jira import JIRA
-from jira.resources import Filter
+
 
 class healthcheckview(BaseHealthCheckBackend):
     critical_service = False
@@ -13,10 +12,10 @@ class healthcheckview(BaseHealthCheckBackend):
             jira_filter = jira.filter("14500")
             jql = jira_filter.jql
             issues = jira.search_issues(jql, maxResults=100)
-            count=issues.total
-        except Exception as e:
-            raise HealthCheckException(f"Something is wrong, Jira Connection failed.")
+            issues.total
+        except Exception:
+            raise HealthCheckException("Something is wrong, Jira Connection failed.")
         pass
-    
+
     def identifier(self):
-        return "Jira Status" 
+        return "Jira Status"
