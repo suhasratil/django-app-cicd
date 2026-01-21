@@ -8,13 +8,12 @@ class healthcheckview(BaseHealthCheckBackend):
 
     def check_status(self):
         try:
-            jira = JIRA(server="https://bugs-legacy.mojang.com/", timeout=(3.0, 5.0), max_retries=0)
-            jira_filter = jira.filter("14500")
-            jql = jira_filter.jql
-            issues = jira.search_issues(jql, maxResults=100)
-            issues.total
-        except Exception:
-            raise HealthCheckException("Something is wrong, Jira Connection failed.")
+            jira = JIRA(server="https://127.0.0.1:8080", timeout=(3.0, 5.0), max_retries=0)
+            results = jira.search_issues(jira.filter("14500").jql, maxResults=0)
+            results.total
+        except Exception as e:
+            # raise HealthCheckException("Something is wrong, Jira Connection failed.")
+            self.add_error(HealthCheckException("Jira Connection failed"), e)
         pass
 
     def identifier(self):
