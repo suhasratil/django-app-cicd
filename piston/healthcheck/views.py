@@ -1,3 +1,5 @@
+import requests
+from azure.storage.blob import BlobServiceClient
 from health_check.backends import BaseHealthCheckBackend
 from health_check.exceptions import HealthCheckException
 from jira import JIRA
@@ -19,3 +21,40 @@ class JiraFilterHealthCheckView(BaseHealthCheckBackend):
 
     def identifier(self):
         return f"Jira Filter Status ({self.issue_count} issues)"
+
+
+class AzureBlobHealthCheck(BaseHealthCheckBackend):
+    critical_service = True
+
+    def check_status(self):
+        try:
+            service_client = BlobServiceClient.from_connection_string("")
+
+            service_client.get_container_client("$logs")  # testlcmih
+
+        except Exception as e:
+            self.add_error(HealthCheckException(f"Azure Blob Storage unreachable: {str(e)}"), e)
+
+    def identifier(self):
+        return "Azure Blob Storage"
+
+
+class AzureFrontDoorHealthCheck(BaseHealthCheckBackend):
+    critical_service = False
+
+    def check_status(self):
+        cdn_url = "https://suhas-test.azurefd.net/"
+
+        try:
+            requests.get(cdn_url, timeout=5)
+            # if response.status_code != 200:
+            #    raise HealthCheckException(f"CDN returned status {response.status_code}")
+
+        # if "X-Azure-Ref" not in response.headers:
+        #    self.add_error(HealthCheckException("Response did not pass through Azure Front Door."))
+
+        except Exception as e:
+            self.add_error(HealthCheckException("Azure Front Door endpoint unreachable"), e)
+
+    def identifier(self):
+        return "Azure Front Door CDN"

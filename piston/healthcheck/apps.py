@@ -7,6 +7,8 @@ class HealthcheckConfig(AppConfig):
     name = "healthcheck"
 
     def ready(self):
-        from .views import JiraFilterHealthCheckView
+        from .views import AzureBlobHealthCheck, AzureFrontDoorHealthCheck, JiraFilterHealthCheckView
 
         plugin_dir.register(JiraFilterHealthCheckView)
+        plugin_dir.register(AzureBlobHealthCheck)
+        plugin_dir.register(AzureFrontDoorHealthCheck)

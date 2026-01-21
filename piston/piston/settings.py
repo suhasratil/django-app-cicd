@@ -25,7 +25,12 @@ SECRET_KEY = "django-insecure-pqz!_@#^7*!c6bvwws1dy!wyhdm77)g)@8&9auisu&*fo8%n80
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "suhas-test-cdn-efehfubqdxcjbja4.z03.azurefd.net",  # Add your specific Front Door URL here
+]
 
 
 # Application definition
