@@ -20,8 +20,8 @@ repos:
       - id: check-yaml
       - id: check-json
       - id: check-added-large-files
-      - id: check-case-conflict
- #     - id: no-commit-to-branch
+      - id: check-case-conflict     
+ #     - id: no-commit-to-branch (Commented to be able to commit to main directly)
  #       args: [--branch, main] # Protects the main branch
 
   # Security (Secret Scanning)

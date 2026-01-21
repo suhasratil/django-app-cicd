@@ -8,5 +8,4 @@ class HealthcheckConfig(AppConfig):
 
     def ready(self):
         from .views import healthcheckview
-
         plugin_dir.register(healthcheckview)
