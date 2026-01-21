@@ -7,6 +7,6 @@ class HealthcheckConfig(AppConfig):
     name = "healthcheck"
 
     def ready(self):
-        from .views import healthcheckview
+        from .views import JiraFilterHealthCheckView
 
-        plugin_dir.register(healthcheckview)
+        plugin_dir.register(JiraFilterHealthCheckView)
