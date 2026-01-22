@@ -1,11 +1,11 @@
 Django
-Jira Integration: 
+Jira Integration:
 * Used "critical_service = False" for non blocking health check
-* Displayig issue count on thr status page
+* Displaying issue count on thr status page
 * Used max_retries=0 for optimised data fetching. This allows us to get total count of issues without the overhead of downloading actual data.
 * Used timeout=(3.0, 5.0) to o ensure the health check remains responsive. This explicitly separates the connection phase from the data-reading phase. Without this application becomes unresponsive.
 
-Azure Integration: 
+Azure Integration:
 * Used from_connection_string to connect to a container in Azure Blob Storage account
 
 Azure CDN:
@@ -13,22 +13,22 @@ Did not managed to get it working. Unfortunately had no time to troubleshoot.
 
 
 Dockerization
-* Multi stage build pattern (Separete build and Runtime stage)
+* Multi stage build pattern (Separate build and Runtime stage)
 * Used --no-cache-dir to ensure the image doesn't store temporary download files.
-* Used python:3.11-slim instead of the full Python image which reduces final image size from 1.2GB to 250MB
+* Used python:3.11-slim instead of the full Python image which reduces final image size from 1.2GB to 210MB
 * Used runtime flags to keep container filesystem clean and log buffering
 * Used Environment Variables appHome and buildHome to ensure the internal directory structure is consistent and easily configurable.
-* using .dockerignore to prevent unncessary conetnt
+* using .dockerignore to prevent unnecessary content
 
 
 CICD Workflow
 1. Two stage workflow, test and deploy.
 2. Workflow triggers on every push, PR and manual trigger
-3. In Test stage, I am using pre-commit check for Linting and formating (ruff), checks on secrets leak (gitleaks), commit message standard (conventional pre-commits), Codeql for security vulnerabilities scan etc.
+3. In Test stage, I am using pre-commit check for Linting and formatting (ruff), checks on secrets leak (gitleaks), commit message standard (conventional pre-commits), Codeql for security vulnerabilities scan etc.
 4. Running Test inside the Docker image ensures that the environment being tested is identical to the one that will be deployed.
 5. Multi-platform Image (hardware Agnostic) with QEMU and Buildx to build for amd64 and arm64.
 6. Used Image dual tagging policy
-7. Usied caching to reduce build time (type=gha)
+7. Used caching to reduce build time (type=gha)
 
 pre-commit:
 Using local pre-commit check (pre-commit run --all) to ensure error free code is pushed to GitHub to avoid build errors.
