@@ -24,11 +24,12 @@ Dockerization
 CICD Workflow
 1. Two stage workflow, test and deploy.
 2. Workflow triggers on every push, PR and manual trigger
-3. In Test stage, I am using pre-commit check for Linting and formatting (ruff), checks on secrets leak (gitleaks), commit message standard (conventional pre-commits), Codeql for security vulnerabilities scan etc.
-4. Running Test inside the Docker image ensures that the environment being tested is identical to the one that will be deployed.
-5. Multi-platform Image (hardware Agnostic) with QEMU and Buildx to build for amd64 and arm64.
-6. Used Image dual tagging policy
-7. Used caching to reduce build time (type=gha)
+3. Ugnore pipeline trigger on unnecessary file such as readme, doc/ etc to avoid waste of GA minutes
+4. In Test stage, I am using pre-commit check for Linting and formatting (ruff), checks on secrets leak (gitleaks), commit message standard (conventional pre-commits), Codeql for security vulnerabilities scan etc.
+5. Running Test inside the Docker image ensures that the environment being tested is identical to the one that will be deployed.
+6. Multi-platform Image (hardware Agnostic) with QEMU and Buildx to build for amd64 and arm64.
+7. Used Image dual tagging policy
+8. Used caching to reduce build time (type=gha)
 
 pre-commit:
 Using local pre-commit check (pre-commit run --all) to ensure error free code is pushed to GitHub to avoid build errors.
