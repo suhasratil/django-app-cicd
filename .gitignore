@@ -5,3 +5,4 @@ __pycache__/
 .sqlite3
 venvDjango/
 .DS_Store
+.ruff_cache
