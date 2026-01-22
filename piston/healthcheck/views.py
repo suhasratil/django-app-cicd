@@ -28,7 +28,7 @@ class AzureBlobHealthCheck(BaseHealthCheckBackend):
 
     def check_status(self):
         try:
-            service_client = BlobServiceClient.from_connection_string("")
+            service_client = BlobServiceClient.from_connection_string("DefaultEndpointsProtocol=https;AccountName=XXXX;AccountKey=XXXXX;EndpointSuffix=core.windows.net")
 
             service_client.get_container_client("$logs")  # testlcmih
 
@@ -43,7 +43,7 @@ class AzureFrontDoorHealthCheck(BaseHealthCheckBackend):
     critical_service = False
 
     def check_status(self):
-        cdn_url = "https://suhas-test.azurefd.net/"
+        cdn_url = "https://suhas-test-cdn-efehfubqdxcjbja4.z03.azurefd.net/"
 
         try:
             requests.get(cdn_url, timeout=5)
