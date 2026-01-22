@@ -47,11 +47,6 @@ class AzureFrontDoorHealthCheck(BaseHealthCheckBackend):
 
         try:
             requests.get(cdn_url, timeout=5)
-            # if response.status_code != 200:
-            #    raise HealthCheckException(f"CDN returned status {response.status_code}")
-
-        # if "X-Azure-Ref" not in response.headers:
-        #    self.add_error(HealthCheckException("Response did not pass through Azure Front Door."))
 
         except Exception as e:
             self.add_error(HealthCheckException("Azure Front Door endpoint unreachable"), e)
