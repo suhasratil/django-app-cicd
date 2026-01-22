@@ -28,7 +28,9 @@ class AzureBlobHealthCheck(BaseHealthCheckBackend):
 
     def check_status(self):
         try:
-            service_client = BlobServiceClient.from_connection_string("DefaultEndpointsProtocol=https;AccountName=XXXX;AccountKey=XXXXX;EndpointSuffix=core.windows.net")
+            service_client = BlobServiceClient.from_connection_string(
+                "DefaultEndpointsProtocol=https;AccountName=XXXX;AccountKey=XXXXX;EndpointSuffix=core.windows.net"
+            )
 
             service_client.get_container_client("$logs")  # testlcmih
 
