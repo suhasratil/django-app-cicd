@@ -9,7 +9,7 @@ Azure Integration:
 * Used from_connection_string to connect to a container in Azure Blob Storage account
 
 Azure CDN:
-Did not managed to get it working. Unfortunately had no time to troubleshoot.
+Did not manage to get it working. 
 
 
 Dockerization
